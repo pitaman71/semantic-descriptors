@@ -1,0 +1,448 @@
+- define: asset
+  @name: Identitfication
+  contains:
+    - @name: Individual
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Trusts
+      extends: Containers.Set
+      formals: { trustee: Noun, truster: Noun, why: Noun }
+    - @name: HasHandle
+      extends: Property
+      formals: { the: Noun, name: Native.String }
+    - @name: HasName
+      extends: Property
+      formals: { the: Noun, given_name: Native.String, family_name: Native.String, locale: Noun }
+- define: asset
+  @name: Contact
+  contains: 
+    - @name: HasEmail
+      extends: Property
+      formals: { who: Noun, email: Native.String }
+    - @name: HasTelephone
+      extends: Property
+      formals: { who: Noun, phone: Native.String }
+    - @name: HasPostalAddress
+      extends: Property
+      formals: { who: Noun, address_1: Native.String, address_2: Native.String, city: Noun, postcode: Noun }
+- define: asset
+  @name: Temporal
+  contains:
+    - @name: Event
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Occurs
+      formals: { what: Temporal.Event, at?: Native.Moment, during?: Native.Period, sense: [ Expected, Reported, Confirmed ] }
+    - @name: Participates
+      formals: { who: Identity.Any, what: Temporal.Event, at?: Native.Moment, during?: Native.Period }
+- define: asset
+  @name: Membership
+  contains:
+    - @name: Group
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Status
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Rank
+      extends: Noun
+      formals: { the: Noun }
+    - @name: HasRank
+      extends: StatusEvent
+      formals: { who: Noun, group: Noun, rank: Noun, under?: Noun, sense: [ Until, At, Since ] }
+    - @name: HasStatus
+      extends: StatusEvent
+      formals: { who: Noun, group: Noun, type: Noun, when?: Native.Moment, sense: [ Until, At, Since ] }
+- define: asset
+  @name: Cartesian
+  contains:
+    - @name: Point
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Vector
+      extends: Noun
+      formals: { from: Noun, target: Noun, direction: [ North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest ], distance: Native.Float }
+    - @name: Segment
+      extends: Noun
+      formals: { the: Noun, from: Noun, to: Noun }
+    - @name: Path
+      extends: Noun
+      formals: { the: Noun, includes*: Noun, close: Native.Boolean }
+    - @name: PathIncludes
+      extends: Containers.Sequence
+      formals: { the: Noun, included: Noun }
+      requires: [ "and", "IsPath(the)", "IsPoint(included)" ]
+    - @name: Polygon
+      extends: Noun
+      formals: { the: Noun, rotation: Native.Float, angles*: Native.Float }
+    - @name: Ellipse
+      extends: Noun
+      formals: { the: Noun, rotation: Native.Float, diameter: Native.Float, aspect: Native.Float, begin: Native.Float, end: Native.Float }
+    - @name: PlaceAt
+      formals: { the: Noun, at: Noun }
+    - @name: PlaceAlong
+      formals: { the: Noun, on: Noun, fraction: Native.Float }
+- define: asset
+  @name: Network
+  contains:
+    - @name: Vertex
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Edge
+      extends: Noun
+      formals: { the: Noun, fromVertex: Noun, toVertex: Noun }
+    - @name: Graph
+      extends: Noun
+      formals: { the: Noun }
+    - @name: GraphContainsVertex
+      extends: Containers.Set
+      formals: { the: Noun, vertex: Noun }
+    - @name: GraphContainsEdge
+      extends: Containers.Set
+      formals: { the: Noun, vertex: Noun }
+- define: view
+  @name: Factorial
+- define: asset
+  @name: Biometric
+  contains:
+    - @name: Person
+      extends: Noun
+      formals: { the: Noun }
+    - @name: BirthDate
+      extends: Property
+      formals: { the: Noun, value: Native.Date }
+    - @name: IsXYGender
+      extends: Property
+      formals: { the: Noun }
+    - @name: IsXXGender
+      extends: Property
+      formals: { the: Noun }
+    - @name: IsOtherGender
+      extends: Property
+      formals: { the: Noun }
+    - @name: Height
+      extends: Property
+      formals: { the: Noun, value: Units.Length }
+    - @name: Weight
+      extends: Property
+      formals: { the: Noun, value: Units.Weight }
+    - @name: EyeColor
+      extends: Property
+      formals: { the: Noun, value: Units.Color.Names }
+    - @name: HairColor
+      extends: Property
+      formals: { the: Noun, value: Units.Color.Names }
+    - @name: Fingerprint
+      extends: Property
+      formals: { the: Noun, value: Media.Image }
+    - @name: Retina
+      extends: Property
+      formals: { the: Noun, value: Media.Image }
+- define: asset
+  @name: Chat
+  contains:
+    - @name: Space
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Channel
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Reaction
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Message
+      extends: Noun
+      formals: { the: Noun }
+    - @name: HasContents
+      extends: Property
+      formals: { message: Noun, author: Noun, body: Media.Any }
+    - @name: Tag
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Mentions
+      extends: Container.Reference
+      formals: { message: Noun, what: Noun }
+    - @name: PostedTo
+      extends: Sequence
+      formals: { channel: Noun, message: Message }
+    - @name: ResponseTo
+      extends: Sequence
+      formals: { original: Noun, response: Noun }
+    - @name: ReactsTo
+      extends: Sequence
+      formals: { message: Noun, who: Noun, reaction: Noun }
+- define: asset
+  @name: Locations
+  contains:
+    - @name: Within
+      extends: Containers.Set
+      formals: { container: Noun, contained: Noun }
+    - @name: Physical
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Geographic
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Political
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Utility
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Federated
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Building
+      extends: Physical
+      formals: { the: Noun }
+    - @name: Subdivision
+      extends: Political
+      formals: { the: Noun }
+    - @name: Neighborhood
+      extends: Political
+      formals: { the: Noun }
+    - @name: PostalCode
+      extends: Utility
+      formals: { the: Noun }
+    - @name: Village
+      extends: Political
+      formals: { the: Noun }
+    - @name: Ward
+      extends: Political
+      formals: { the: Noun }
+    - @name: Town
+      extends: Political
+      formals: { the: Noun }
+    - @name: City
+      extends: Political
+      formals: { the: Noun }
+    - @name: County
+      extends: Political
+      formals: { the: Noun }
+    - @name: Parish
+      extends: Political
+      formals: { the: Noun }
+    - @name: Borough
+      extends: Political
+      formals: { the: Noun }
+    - @name: State
+      extends: Political
+      formals: { the: Noun }
+    - @name: Province
+      extends: Political
+      formals: { the: Noun }
+    - @name: Territory
+      extends: Political
+      formals: { the: Noun }
+    - @name: Country
+      extends: Political
+      formals: { the: Noun }
+    - @name: Nation
+      extends: Political
+      formals: { the: Noun }
+    - @name: Continent
+      extends: Geographic
+      formals: { the: Noun }
+    - @name: Treaty
+      extends: Federated
+      formals: { the: Noun }
+    - @name: Region
+      extends: Federated
+      formals: { the: Noun }
+- define: asset
+  @name: Markup
+  contains: 
+    - @name: Contains
+      extends: Containers.Sequence
+      formals: { container: Noun, contained: Noun }
+    - @name: Section
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Header
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Callout
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Paragraph
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Reference
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Anchor
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Unit
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Description
+      extends: Noun
+      formals: { the: Noun }
+- define: asset
+  @name: Media
+  contains: 
+    - @name: Contains
+      extends: Containers.Sequence
+      formals: { container: Noun, contained: Noun }
+    - @name: Photo
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Video
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Audio
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Anchor
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Reference
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Show
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Scene
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+    - @name: Playlist
+      extends: Noun
+      formals: { the: Noun, url: Native.URI }
+- define: asset
+  @name: Finance
+  contains: 
+    - @name: Institution
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Owns
+      extends: Containers.Ownership
+      formals: { owner: Noun, account: Noun }
+    - @name: Account
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Charge
+      extends: Noun
+      formals: { account: Noun, amount: Native.Currency.Amount }
+    - @name: Credit
+      extends: Noun
+      formals: { account: Noun, amount: Native.Currency.Amount }
+    - @name: Invoice
+      extends: Noun
+      formals: { fromAccount: Noun, toAccount: Noun, amount: Native.Currency.Amount }
+    - @name: Settlement
+      extends: Noun
+      formals: { fromAccount: Noun, toAccount: Noun, amount: Native.Currency.Amount }
+    - @name: Statement
+      extends: Noun
+      formals: { the: Noun, account: Noun }
+- define: asset
+  @name: Tokens
+  contains: 
+    - @name: Account
+      description:
+        en_US: a supply of purchased tokens from which users may borrow or take for consumption.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Owns
+      description:
+        en_US: which user or group owns this account
+      extends: Container.Ownership
+      formals: { who: Noun, account: Noun }
+    - @name: Subscription
+      description:
+        en_US: a recurring billing schedule which renews or purchases tokens that enable users to get, access, or use a monetized offering.
+      extends: Noun
+      formals: { the: Noun, account: Noun }
+    - @name: Token
+      description:
+        en_US: a unit of non-negotiable credit that a customer must borrow or consume in order to get, access, or use a monetized offering.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Exchange
+      description:
+        en_US: an event in which the user borrows, returns, or consumes tokens from their token account.
+      extends: Noun
+    - @name: Borrows
+      description:
+        en_US: in this exchange the user takes a specific number of tokens from their account with the intent to return them for reuse later.
+      extends: Property
+      formals: { exchange: Noun, account: Noun, amount: Native.Currency.Amount }
+    - @name: Returns
+      description:
+        en_US: in this exchange the user returns a specific number of tokens to their account with for reuse later.
+      extends: Property
+      formals: { exchange: Noun, account: Noun, amount: Native.Currency.Amount }
+    - @name: Consumes
+      description:
+        en_US: in this exchange the user takes a specific number of tokens from their account that cannot be returned or reused.
+      extends: Property
+      formals: { exchange: Noun, account: Noun, amount: Native.Currency.Amount }
+    - @name: Statement
+      description:
+        en_US: tally of all exchanges on the token account with the account balance before and after each.
+      extends: Noun
+      formals: { the: Noun, account: Noun }
+- define: asset
+  @name: Workflow
+  contains: 
+    - @name: RequestedBy
+      description:
+        en_US: the item has been requested by an individual or group.
+      extends: Container.Reference
+      formals: { item: Noun, who: Noun, due: Native.DateTime }
+    - @name: AssignedTo
+      description:
+        en_US: the item has been assigned to a responsible individual or group.
+      extends: Container.Reference
+      formals: { item: Noun, who: Noun }
+    - @name: WorkedBy
+      description:
+        en_US: Work was applied to the item but it is not complete yet. By whom and when?
+      extends: Container.Reference
+      formals: { item: Noun, who: Noun, due: Period } }
+    - @name: CompletedBy
+      description:
+        en_US: The item is completed, by whom and on what date?
+      extends: Container.Reference
+      formals: { item: Noun, who: Noun, due: Native.DateTime } }
+    - @name: Task
+      description:
+        en_US: Unit of work. Can done by one person in a predictable quantum of time.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Goal
+      description:
+        en_US: Unit of internal completion. Cumulative result of completing one or more tasks on a one-time basis that can be measured objectively and which enables other goals to begin. 
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Routine
+      description:
+        en_US: Repeating process. Cumulative result of completing one or more tasks on a recurring schedule that can be measured objectively.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Result
+      description:
+        en_US: Unit of external value delivery. Cumulative result of completing one or more goals and routines that provides external utility, value, etc.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Series
+      description:
+        en_US: Sequence of externally valuable configurations. An ordered set of benefits that solve the same problem or use case but with specifications or requirements that vary across customers.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Release
+      description:
+        en_US: Quorum of multiple results delivered at the same time. Motivates a step change in an external relationship.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Roadmap
+      description:
+        en_US: Long-term plan that addresses challenges with current and future releases.
+      extends: Noun
+      formals: { the: Noun }
+    - @name: Challenge
+      description:
+        en_US: Top-level ask to make progress on one or more KPIs. Produce a result that meets some expectation by top management and/or external business opportunity/risk.
+      extends: Noun
+      formals: { the: Noun }

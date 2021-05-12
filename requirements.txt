@@ -1,0 +1,1 @@
+-e git+https://github.com/pitaman71/elevated-objects.git@d10699c71c4cdeefe845e3e79d2fbdd1719c181d#egg=elevated_objects&subdirectory=python3

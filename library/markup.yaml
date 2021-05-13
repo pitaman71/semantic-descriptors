@@ -1,0 +1,10 @@
+- define: Containers.Sequence "Contains"
+  nouns: { container: Subject, prev: Subject, next: Subject }
+- define: Subject "Section"
+- define: Subject "Header"
+- define: Subject "Callout"
+- define: Subject "Paragraph"
+- define: Subject "Reference"
+- define: Subject "Anchor"
+- define: Subject "Unit"
+- define: Subject "Description"

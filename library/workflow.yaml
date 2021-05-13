@@ -1,0 +1,43 @@
+- define: Container.Reference "RequestedBy"
+  description:
+    en_US: the item has been requested by an individual or group.
+  nouns: { item: Subject, who: Subject }
+- define: Container.Reference "AssignedTo"
+  description:
+    en_US: the item has been assigned to a responsible individual or group.
+  nouns: { item: Subject, who: Subject }
+- define: Container.Reference "WorkedBy"
+  description:
+    en_US: Work was applied to the item but it is not complete yet. By whom and when?
+  nouns: { item: Subject, who: Subject }
+- define: Container.Reference "CompletedBy"
+  description:
+    en_US: The item is completed, by whom and on what date?
+  nouns: { item: Subject, who: Subject }
+- define: Subject "Task"
+  description:
+    en_US: Unit of work. Can done by one person in a predictable quantum of time.
+- define: Subject "Goal"
+  description:
+    en_US: Unit of internal completion. Cumulative result of completing one or more tasks on a one-time basis that can be measured objectively and which enables other goals to begin. 
+- define: Subject
+  description:
+    en_US: Repeating process. Cumulative result of completing one or more tasks on a recurring schedule that can be measured objectively.
+- define: Subject "Result"
+  description:
+    en_US: Unit of external value delivery. Cumulative result of completing one or more goals and routines that provides external utility, value, etc.
+- define: Subject "Series"
+  description:
+    en_US: Sequence of externally valuable configurations. An ordered set of benefits that solve the same problem or use case but with specifications or requirements that vary across customers.
+- define: Subject "Release"
+  description:
+    en_US: Quorum of multiple results delivered at the same time. Motivates a step change in an external relationship.
+- define: Subject "Roadmap"
+  description:
+    en_US: Long-term plan that addresses challenges with current and future releases.
+- define: Subject "Challenge"
+  description:
+    en_US: Top-level ask to make progress on one or more KPIs. Produce a result that meets some expectation by top management and/or external business opportunity/risk.
+- define: Measure "DueBy"
+  of: { item: Workflow.Item }
+  measures: { due: Temporal.DateTime }

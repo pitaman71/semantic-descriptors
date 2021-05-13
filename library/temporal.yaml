@@ -1,0 +1,9 @@
+- define: Subject "Event"
+- define: Measure "Occurs.AsShorthand"
+  of: { what: Temporal.Event }
+  measures: { shorthand: Native.String }
+- define: Measure "Occurs.AsShorthand.AsRecord"
+  of: { what: Temporal.Event }
+  measures: { what: Temporal.Event, at?: Temporal.Moment, during?: Temporal.Period, sense: [ Expected, Reported, Confirmed ] }
+- define: Reference "Participates"
+  nouns: { who: Identity.Any, what: Temporal.Event, at?: Temporal.Moment, during?: Temporal.Period }

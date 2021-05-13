@@ -1,0 +1,8 @@
+- define: Subject "Vertex"
+- define: Reference "Edge"
+  nouns: { fromVertex: Subject, toVertex: Subject }
+- define: Subject "Graph"
+- define: Containers.Set "GraphContainsVertex"      
+  nouns: { the: Subject, vertex: Subject }
+- define: Containers.Set "GraphContainsEdge"
+  nouns: { the: Subject, edge: Subject }

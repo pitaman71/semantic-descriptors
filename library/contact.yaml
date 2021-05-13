@@ -1,0 +1,21 @@
+- define: Measure "HasEmailAddress.AsShorthand"
+  of: { the: Subject }
+  measures: { shorthand: Native.String }
+- define: Measure "HasPhoneNumber.AsShorthand"
+  of: { the: Subject }
+  measures: { shorthand: Native.String }
+- define: Measure "HasPhoneNumber.RegionalFormats.NorthAmerica"
+  of: { the: Subject }
+  measures: { area_code: Native.String, local_number: Native.String }
+- define: Measure "HasPostalAddress.AsShorthand"
+  of: { the: Subject }
+  measures: { shorthand: Native.String }
+- define: Measure "HasPostalAddress.RegionalFormats.UnitedStates"
+  of: { the: Subject }
+  measures:
+    address_line_1: Native.String
+    address_line_2: Native.String
+    city: Location.City
+    state: Location.State
+    country: Location.Country
+    postal_code: Location.PostalCode

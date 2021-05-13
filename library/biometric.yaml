@@ -1,0 +1,24 @@
+- define: Subject "HasGender"
+- define: Measure "HasBirthDate"
+  of: { the: Subject }
+  measures: { value: Temporal.Date }
+- define: Relation "HasGender"
+  nouns: { person: Person, gender: Gender }
+- define: Measure "HasHeight"
+  of: { person: Person }
+  measures: { value: Units.Length }
+- define: Measure "HasWeight"
+  of: { person: Person }
+  measures: { value: Units.Weight }
+- define: Measure "HasEyeColor"
+  of: { person: Person }
+  measures: { value: Units.Color.Names }
+- define: Measure "HasHairColor"
+  of: { person: Person }
+  measures: { value: Units.Color.Names }
+- define: Measure "HasFingerprint"
+  of: { person: Person }
+  measures: { value: Media.Image }
+- define: Measure "HasRetinaScan"
+  of: { person: Person }
+  measures: { value: Media.Image }

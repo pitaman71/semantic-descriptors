@@ -1,0 +1,17 @@
+- define: Subject "Institution"
+- define: Containers.Ownership "Owns"
+  nouns: { owner: Subject, account: Subject }
+- define: Subject "Account"
+- define: Subject "Transaction"
+  measures: { amount: Currency.Amount }
+- define: Containers.Sequence "ListsTransactions"
+  nouns: { invoice: Invoice, transaction: Transaction }
+- define: Subject "Statement"
+  measures: { generated: Temporal.Date }
+- define: Relation "ForAccount"
+  nouns: { statement: Statement, account: Account }
+- define: Subject "Invoice"
+- define: Subject "AmountDue"
+  measures: { amount: Commerce.Currency.Amount, date: Temporal.Date }
+- define: Containers.Set "IncludesAmountsDue"
+  nouns: { invoice: Invoice, prev: AmountDue, next: AmountDue }

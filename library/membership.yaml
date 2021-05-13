@@ -1,0 +1,23 @@
+- define: Subject "Group"
+- define: Subject "Organization"
+- define: Subject "Business"
+- define: Subject "Division"
+- define: Subject "Branch"
+- define: Subject "Office"
+- define: Subject "Government"
+- define: Subject "Agency"
+- define: Measure "HasHandle"
+  of: { the: Subject }
+  measures: { name: Native.String }
+- define: Measure "HasName.AsShorthand"
+  of: { named: Subject, authority: Authority }
+  measures: { name: Native.String }
+- define: Measure "HasName.RegionalFormats.AsWestern"
+  of: { named: Subject, authority: Authority }
+  measures: { legal_name: Native.String, doing_business_as: Native.String, locale: Subject }
+- define: Subject "Status"
+- define: Subject "Rank"
+- define: Reference "HasRank"
+  nouns: { who: Subject, group: Subject, rank: Subject, under?: Subject, sense: [ Until, At, Since ] }
+- define: Reference "HasStatus"
+  nouns: { who: Subject, group: Subject, type: Subject, when?: Temporal.Moment, sense: [ Until, At, Since ] }

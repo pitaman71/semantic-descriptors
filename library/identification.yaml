@@ -1,0 +1,12 @@
+- define: Subject "Authority"
+- define: Subject "Salutation"
+- define: Subject "Suffix"
+- define: Measure "HasHandle"
+  of: { the: Subject }
+  measures: { name: Native.String }
+- define: Measure "HasName.AsShorthand"
+  of: { named: Subject, authority: Authority }
+  measures: { name: Native.String }
+- define: Measure "HasName.RegionalFormats.AsWestern"
+  of: { named: Subject, authority: Authority }
+  measures: { salutation: Salutation, given_name: Native.String, family_name: Native.String, suffix: Suffix, locale: Subject }

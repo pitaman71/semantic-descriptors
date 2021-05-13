@@ -1,7 +1,7 @@
+- define: Subject "Person"
 - define: Subject "HasGender"
-- define: Measure "HasBirthDate"
-  of: { the: Subject }
-  measures: { value: Temporal.Date }
+- define: Temporal.Occurs.AsDate "HasBirthDate"
+  of: { person: Person }
 - define: Relation "HasGender"
   nouns: { person: Person, gender: Gender }
 - define: Measure "HasHeight"

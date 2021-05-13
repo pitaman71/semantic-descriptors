@@ -1,10 +1,20 @@
 - define: Containers.Set "Within"
   nouns: { container: Subject, contained: Subject }
 - define: Measure "IsPhysical"
+  of: { the: Subject }
+  measures: { "is": Native.Boolean }
 - define: Measure "IsGeographic"
+  of: { the: Subject }
+  measures: { "is": Native.Boolean }
 - define: Measure "IsPolitical"
+  of: { the: Subject }
+  measures: { "is": Native.Boolean }
 - define: Measure "IsUtility"
+  of: { the: Subject }
+  measures: { "is": Native.Boolean }
 - define: Measure "IsFederation"
+  of: { the: Subject }
+  measures: { "is": Native.Boolean }
 - define: Subject "Building"
 - define: Subject "Subdivision"
 - define: Subject "Neighborhood"

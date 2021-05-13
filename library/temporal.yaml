@@ -1,9 +1,17 @@
 - define: Subject "Event"
+- define: Subject "Participant"
 - define: Measure "Occurs.AsShorthand"
-  of: { what: Temporal.Event }
+  of: { event: Event }
   measures: { shorthand: Native.String }
-- define: Measure "Occurs.AsShorthand.AsRecord"
-  of: { what: Temporal.Event }
-  measures: { what: Temporal.Event, at?: Temporal.Moment, during?: Temporal.Period, sense: [ Expected, Reported, Confirmed ] }
+- define: Measure "Occurs.AsDate"
+  of: { what: Event }
+  measures: { on_date: Native.Date, sense: [ Expected, Reported, Confirmed ] }
+- define: Measure "Occurs.AsTime"
+  of: { event: Event }
+  measures: { on_date: Native.DateTime, sense: [ Expected, Reported, Confirmed ] }
+- define: Measure "Occurs.AsPeriod"
+  of: { what: Event }
+  measures: { starts: Native.DateTime, ends: Native.DateTime, sense: [ Expected, Reported, Confirmed ] }
 - define: Reference "Participates"
-  nouns: { who: Identity.Any, what: Temporal.Event, at?: Temporal.Moment, during?: Temporal.Period }
+  nouns: { who: Identity.Any, what: Event }
+  measures: { when: Temporal.Occurs }

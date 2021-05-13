@@ -20,7 +20,7 @@
 - define: Subject "Goal"
   description:
     en_US: Unit of internal completion. Cumulative result of completing one or more tasks on a one-time basis that can be measured objectively and which enables other goals to begin. 
-- define: Subject
+- define: Subject "Process"
   description:
     en_US: Repeating process. Cumulative result of completing one or more tasks on a recurring schedule that can be measured objectively.
 - define: Subject "Result"
@@ -38,6 +38,5 @@
 - define: Subject "Challenge"
   description:
     en_US: Top-level ask to make progress on one or more KPIs. Produce a result that meets some expectation by top management and/or external business opportunity/risk.
-- define: Measure "DueBy"
-  of: { item: Workflow.Item }
-  measures: { due: Temporal.DateTime }
+- define: Temporal.Occurs.AsDateTime "DueBy"
+  of: { item: [ Task, Goal, Process, Result, Series, Roadmap, Challenge ] }

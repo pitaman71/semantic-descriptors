@@ -31,5 +31,5 @@
 - define: Reference "PlaceAt"
   nouns: { the: Subject, at: Subject }
 - define: Reference "PlaceAlong"
-  nouns: { the: Subject, on: Subject }
+  nouns: { the: Subject, "on": Subject }
   measures: { fraction: Native.Float }

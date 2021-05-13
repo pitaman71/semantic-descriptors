@@ -18,6 +18,6 @@
 - define: Subject "Status"
 - define: Subject "Rank"
 - define: Reference "HasRank"
-  nouns: { who: Subject, group: Subject, rank: Subject, under?: Subject, sense: [ Until, At, Since ] }
+  nouns: { who: Subject, group: Subject, rank: Subject, under: Subject, sense: [ Until, At, Since ] }
 - define: Reference "HasStatus"
-  nouns: { who: Subject, group: Subject, type: Subject, when?: Temporal.Moment, sense: [ Until, At, Since ] }
+  nouns: { who: Subject, group: Subject, type: Subject, when: Temporal.Occurs, sense: [ Until, At, Since ] }

@@ -1,0 +1,90 @@
+Point: &Point
+  isa: subject
+Length: &Length
+  isa: domain
+Coordinates.Has: &Coordinates.Has
+  of: { point: *Point, x: *Length, y: *Length }
+Directions.Values: &Directions.Values
+  isa: classification
+  values:
+    - North
+    - NorthEast
+    - East
+    - SouthEast
+    - South
+    - SouthWest
+    - West
+    - NorthWest
+Angle: &Angle
+  isa: domain
+  of: { degrees: Values.Float }
+Distance.Has: &Distance.Has
+  isa: measure
+  of: { a: *Point, b: *Point, value: *Length }
+Path: &Path
+  isa: subject
+Path.Properties: &Path.Properties
+  isa: measure
+  of:
+    path: *Path
+    isClosedShape: Values.Boolean
+Contains: &Contains
+  isa: sequence
+  of:
+    - { container: Path, contained: Vector }
+Shape: &Shape
+  isa: subject
+Shape.Properties: &Shape.Properties
+  isa: measure
+  of:
+    the: *Shape
+    rotation: *Angle
+Vector: &Vector
+  isa: subject
+  extends: *Shape
+Vector.Properties: &Vector.Properties
+  of:
+    - vector: *Vector
+    - direction: [ *Directions.Values, *Angle ]
+      distance: *Length
+    - vector: *Vector
+      dx: Values.Float
+      dy: Values.Float
+Vector.Points: &Vector.Points
+  of:
+    the: Ellipse
+    start: *Point
+    mid: *Point
+    end: *Point
+    north: *Point
+    east: *Point
+    south: *Point
+    west: *Point
+Ellipse: &Ellipse
+  isa: subject
+  extends: *Shape
+Ellipse.Properties: &Ellipse.Properties
+  of:
+    the: Ellipse
+    diameter: Native.Float
+    aspect: Native.Float
+    begin: *Angle
+    end: *Angle
+Ellipse.Points: &Ellipse.Points
+  of:
+    the: Ellipse
+    center: *Point
+    north: *Point
+    east: *Point
+    south: *Point
+    west: *Point
+Equilateral: &Equilateral
+  isa: subject
+  extends: *Shape
+Equilateral.Properties: &Equilateral.Properties
+  of:
+    the: Ellipse
+    diameter: Native.Float
+    aspect: Native.Float
+    begin: *Angle
+    end: *Angle

@@ -1,0 +1,27 @@
+Authority: &Authority
+  isa: subject
+Person: &Person
+  isa: subject
+Organization: &Organization 
+  isa: subject
+Prefix: &Prefix
+  isa: subject
+Place: &Place
+  isa: subject
+Numeral: &Numeral
+  isa: subject
+Honorific: &Honorific
+  isa: subject
+Name.Has : &Name.Has
+  isa: measure
+  of: { named: [ *Person, *Organization, *Place ], shorthand: Values.String }
+RegionalFormats.AsWestern : &RegionalFormats.AsWestern
+  isa: measure
+  of:
+    named: [ *Person, *Organization, *Place ]
+    authority: *Authority
+    given_name: Values.String
+    family_name: Values.String
+    numeral: *Numeral
+    honorific: *Honorific
+

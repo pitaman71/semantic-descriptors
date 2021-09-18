@@ -1,0 +1,39 @@
+Institution: &Institution
+  isa: subject
+Member: &Member
+  isa: subject
+Account: &Account
+  isa: subject
+Transaction: &Transaction
+  isa: subject
+Invoice: &Invoice
+  isa: subject
+Statement: &Statement
+  isa: subject
+Owns: &Owns
+  isa: measure
+  of: { owner: Member, account: Subject }
+Currency: &Currency
+  isa: subject
+Amount.Has: &Amount.Has
+  isa: measure
+  of: { the: [ *Transaction, *Payment.Demand ], quantity: [ Native.Float, Native.Integer ] , currency: Currency }
+Occurs.OnDate: &Occurs.OnDate
+  isa: measure 
+  of: { transaction: *Transaction, date: Temporal.DateTime }
+Transactions.Included : &Transactions.Included
+  isa: measure
+  measures: { list: [ *Invoice, *Statement ], transaction: *Transaction }
+Account.Debited: &Account.Debited
+  isa: measure
+  of: { transaction: *Transaction, account: *Account }
+Payment.Ask: &Payment.Ask
+  isa: subject
+Payment.DueBy: &Payment.DueBy
+  isa: measure
+  of: { the: *Payment.Ask, when: Temporal.DateTime }
+Payment.Credit: &Payment.Credit
+  isa: subject
+Payment.ReceivedOn: &Payment.ReceivedOn
+  isa: measure
+  of: { the: *Payment.Credit, when: Temporal.DateTime }

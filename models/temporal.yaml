@@ -1,0 +1,24 @@
+Event: &Event
+  isa: subject
+Participant: &Participant
+  isa: subject
+Occurs: &Occurs
+  isa: measure
+  of:
+    event: *Event
+    shorthand: Values.String
+    when: [ Temporal.DateTime, Temporal.Period ]
+Invitation.Status: &Invitation.Status
+  isa: classification
+Reply.Status: &Reply.Status
+  isa: classification
+Attendance.Status: &Attendance.Status
+  isa: classification
+Participates: &Participates
+  isa: measure
+  of:
+    event: *Event
+    who: *Participant
+    invitationStatus: *Invitation.Status
+    replyStatus: *Reply.Status
+    attendanceStatus: *Attendance.Status

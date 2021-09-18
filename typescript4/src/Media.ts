@@ -9,9 +9,9 @@ export interface Extent2D {
 export abstract class Media extends Elevated.Serializable {
     slug?: string;
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         visitor.primitive<string>(this, 'slug');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -21,11 +21,11 @@ export class Show extends Media {
     getClassSpec() { return 'Media.Show'; }
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.primitive<string>(this, 'title');
         visitor.array<Scene>(this, 'scenes');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -36,12 +36,12 @@ export class Scene extends Media {
     getClassSpec() { return 'Media.Scene'; }
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.primitive<string>(this, 'title');
         visitor.primitive<number>(this, 'duration');
         visitor.array<Media>(this, 'assets');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -54,14 +54,14 @@ export class Playlist extends Media {
     getClassSpec() { return 'Media.Playlist'; }
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.primitive<string>(this, 'slug');
         visitor.primitive<string[]>(this, 'tags');
         visitor.array<Media>(this, 'contents');
         visitor.primitive<boolean>(this, 'shuffle');
         visitor.primitive<boolean>(this, 'repeat');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -72,10 +72,10 @@ export class Markup extends Media {
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
 
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.scalar<MarkupData.Markup>(this, 'content');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -89,13 +89,13 @@ export class Image extends Media {
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
 
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.primitive<Extent2D>(this, 'pixels');
         visitor.primitive<string[]>(this, 'tags');
         visitor.primitive<number>(this, 'proximity');
         visitor.primitive<string>(this, 'uri');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 
@@ -111,7 +111,7 @@ export class BoxCastStream extends Media {
     constructor(initializer?: any) { super(); this.overlay(... initializer ? [ initializer ] : []); }
 
     marshal(visitor: Elevated.Visitor<this>) {
-        visitor.beginObject(this);
+        visitor.begin(this);
         super.marshal(visitor);
         visitor.primitive<Extent2D>(this, 'pixels');
         visitor.primitive<number>(this, 'duration');
@@ -119,7 +119,7 @@ export class BoxCastStream extends Media {
         visitor.primitive<string>(this, 'broadcastId');
         visitor.primitive<string>(this, 'poster');
         visitor.primitive<number>(this, 'volume');
-        visitor.endObject(this);
+        visitor.end(this);
     }
 }
 

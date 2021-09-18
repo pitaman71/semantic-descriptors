@@ -1,0 +1,36 @@
+Group: &Group
+  isa: subject
+Member: &Member
+  isa: subject
+Locale: &Locale
+  isa: subject
+Kind: &Kind
+  isa: classifier
+  values:
+    - Organization
+    - Business
+    - Division
+    - Branch
+    - Office
+    - Government
+    - Agency
+Name.Has: &Name.Has
+  isa: measure
+  of: { group: *Group, shorthand: Values.String }
+Name.RegionalFormats.AsWestern: &Name.RegionalFormats.AsWestern
+  isa: measure
+  of:
+    named: *Group
+    legal_name: Values.String
+    doing_business_as: Values.String, 
+    locale: Locale
+Status.Codes: &Status.Codes
+  isa: classification
+Status.Has: &Status.Has
+  isa: measure
+  of: { member: *Member, group: *Group, status: *Status.Codes }
+Rank.Codes: &Rank.Codes
+  isa: classification
+Rank.Has: &Rank.Has
+  isa: measure
+  of: { member: *Member, group: *Group, rank: *Rank.Codes }

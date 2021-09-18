@@ -1,28 +1,37 @@
-- define: Subject "Account"
+Account: &Account
+  isa: subject
   description:
     en_US: a supply of purchased tokens from which users may borrow or take for consumption.      
-- define: Container.Ownership "Owns"
+Participant: &Participant
+Account.OwnedBy: &Account.OwnedBy
+  isa: measure
   description:
     en_US: which user or group owns this account      
-  nouns: { who: Subject, account: Subject }
-- define: Subject "Subscription"
+  of: { owner: *Participant, account: *Account }
+Subscription: &Subscription
+  isa: subject
   description:
     en_US: a recurring billing schedule which renews or purchases tokens that enable users to get, access, or use a monetized offering.
-- define: Relation "DrawsFrom"
+DrawsFrom: &DrawsFrom
+  isa: measure
   nouns: { subscription: Subscription, account: Account }
-- define: Subject "Token"
+Token: &Token
+  isa: subject
   description:
     en_US: a unit of non-negotiable credit that a customer must borrow or consume in order to get, access, or use a monetized offering.      
-- define: Subject "Sense"
-- define: Subject "Exchange"
+Transaction: &Transaction
+  isa: subject
   description:
     en_US: an event in which the user borrows, returns, or consumes tokens from their token account.
-- define: Reference "HasSense"
+Transaction.Debits: &Transaction.Debits
+  isa: measure
   description:
     en_US: in this exchange the user takes a specific number of tokens from their account with the intent to return them for reuse later.      
-  nouns: { exchange: Subject, account: Subject, sense: Sense }
-- define: Subject "Statement"
+  of: { debits: *Account, credits: *Account }
+Statement: &Statement
+  isa: subject
   description:
     en_US: tally of all exchanges on the token account with the account balance before and after each.
-- define: Relation "ForAccount"      
-  nouns: { statement: Statement, account: Account }
+OfAccount: &OfAccount
+  isa: measure
+  nouns: { statement: *Statement, account: *Account }

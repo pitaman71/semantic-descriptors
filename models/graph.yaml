@@ -1,0 +1,10 @@
+Graph: &Graph
+  isa: relation
+Vertex: &Vertex
+  isa: subject
+Edge: &Edge
+  isa: measure
+  of: { from: *Vertex, to: *Vertex }
+Contains: &Contains
+  isa: measure
+  of: { graph: *Graph, item: [ *Vertex, *Edge ]}

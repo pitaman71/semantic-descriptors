@@ -1,0 +1,29 @@
+Image: &Image
+  isa: subject
+  measures: { url: Native.URI }
+Clip: &Clip
+  isa: subject
+  measures: { url: Native.URI }
+RTSP: &RTSP
+  isa: subject
+  measures: { url: Native.URI }
+Anchor: &Anchor
+  isa: subject
+  measures: { url: Native.URI }
+Reference: &Reference
+  isa: subject
+  measures: { url: Native.URI }
+Show: &Show
+  isa: subject
+  measures: { url: Native.URI }
+Scene: &Scene
+  isa: subject
+  measures: { url: Native.URI }
+Playlist: &Playlist
+  isa: subject
+  measures: { url: Native.URI }
+Contains: &Contains
+  isa: container
+  sequence:
+    - { container: *Playlist, contained: *Scene }
+    - { container: *Scene, contained: *Show }

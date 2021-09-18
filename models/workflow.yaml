@@ -1,42 +1,73 @@
-- define: Container.Reference "RequestedBy"
+Item: &Item
+  isa: subject
+Participant: &Participant
+  isa: subject
+RequestedBy: &RequestedBy
+  isa: measure
   description:
     en_US: the item has been requested by an individual or group.
-  nouns: { item: Subject, who: Subject }
-- define: Container.Reference "AssignedTo"
+  of: { item: Subject, who: Subject }
+AssignedTo: &AssignedTo
+  isa: measure
   description:
     en_US: the item has been assigned to a responsible individual or group.
-  nouns: { item: Subject, who: Subject }
-- define: Container.Reference "WorkedBy"
+  of: { item: Item, who: Item }
+Work: &Work
+  isa: subject
   description:
     en_US: Work was applied to the item but it is not complete yet. By whom and when?
   nouns: { item: Subject, who: Subject }
-- define: Container.Reference "CompletedBy"
+ByWhom: &ByWhom
+  isa: measure
+  of: { work: *Work, whom: *Participant }
+When: &When
+  isa: measure
+  of: { work: *Work, when: Temporal.Period }
+CompletedBy: &CompletedBy
+  isa: measure
   description:
     en_US: The item is completed, by whom and on what date?
   nouns: { item: Subject, who: Subject }
-- define: Subject "Task"
+Task: &Task
+  isa: subject
+  extends: *Item
   description:
     en_US: Unit of work. Can done by one person in a predictable quantum of time.
-- define: Subject "Goal"
+Goal: &Goal
+  isa: subject
+  extends: *Item
   description:
     en_US: Unit of internal completion. Cumulative result of completing one or more tasks on a one-time basis that can be measured objectively and which enables other goals to begin. 
-- define: Subject "Process"
+Process: &Process
+  isa: subject
+  extends: *Item
   description:
     en_US: Repeating process. Cumulative result of completing one or more tasks on a recurring schedule that can be measured objectively.
-- define: Subject "Result"
+Result: &Result
+  isa: subject
+  extends: *Item
   description:
     en_US: Unit of external value delivery. Cumulative result of completing one or more goals and routines that provides external utility, value, etc.
-- define: Subject "Series"
+Series: &Series
+  isa: subject
+  extends: *Item
   description:
     en_US: Sequence of externally valuable configurations. An ordered set of benefits that solve the same problem or use case but with specifications or requirements that vary across customers.
-- define: Subject "Release"
+Release: &Release
+  isa: subject
+  extends: *Item
   description:
     en_US: Quorum of multiple results delivered at the same time. Motivates a step change in an external relationship.
-- define: Subject "Roadmap"
+Roadmap: &Roadmap
+  isa: subject
+  extends: *Item
   description:
     en_US: Long-term plan that addresses challenges with current and future releases.
-- define: Subject "Challenge"
+Challenge: &Challenge
+  isa: subject
+  extends: *Item
   description:
     en_US: Top-level ask to make progress on one or more KPIs. Produce a result that meets some expectation by top management and/or external business opportunity/risk.
-- define: Temporal.Occurs.AsDateTime "DueBy"
-  of: { item: [ Task, Goal, Process, Result, Series, Roadmap, Challenge ] }
+DueBy: &DueBy
+  isa: measure
+  of: { item: [ *Task, *Goal, *Process, *Result, *Series, *Roadmap, *Challenge ] }

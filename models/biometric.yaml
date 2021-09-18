@@ -1,0 +1,39 @@
+Person: &Person
+  isa: subject
+BornOn: &BornOn
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  event: Temporal.Event }
+DiedOn: &DiedOn
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  event: Temporal.Event }
+Gender.Codes: &Gender.Codes
+  isa: classification
+  values:
+    - Female
+    - Male
+    - Nonbinary
+Gender.Has: &Gender.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person, metric: *Gender.Codes }
+Height.Has: &Height.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  metric: Units.Length }
+Weight.Has: &Weight.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  metric: Units.Weight }
+EyeColor.Codes: &EyeColor.Codes
+  isa: classification
+EyeColor.Has: &EyeColor.Has
+  isa: classification
+  of: { when: Factual.Report, who: *Person,  metric: *EyeColor.Codes }
+HairColor.Codes: &HairColor.Codes
+  isa: classification
+HairColor.Has: &HairColor.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  metric: *HairColor.Codes }
+Fingerprint.Has: &Fingerprint.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  metric: Media.Image }
+RetinaScan.Has: &RetinaScan.Has
+  isa: measure
+  of: { when: Factual.Report, who: *Person,  metric: Media.Image }

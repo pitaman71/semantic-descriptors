@@ -1,0 +1,21 @@
+Document: &Document
+  isa: subject
+Item: &Item
+  isa: subject
+Section: &Section
+  isa: subject
+  extends: *Item
+Paragraph: &Paragraph
+  isa: subject
+  extends: *Item
+Key.Has: &Key.Has
+  isa: relation
+  of: { the: [ *Document, *Section, *Paragraph ], key: Values.String }
+Span: &Span
+  isa: subject
+  extends: *Item
+Contains: &Contains
+  isa: measure
+  sequence:
+    container: [ *Document, *Section, *Paragraph, *Span ]
+    contained: [ *Section, *Paragraph, *Span, Values.String ]

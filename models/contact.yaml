@@ -1,0 +1,30 @@
+Person: &Person
+  isa: subject
+Organization: &Organization
+  isa: subject
+Location: &Location
+  isa: subject
+EmailAddress.Has: &EmailAddress.Has
+  isa: measure
+  of: { the: [ Person Organization Location ], shorthand: Values.String }
+PhoneNumber.Has: &PhoneNumber.Has
+  isa: measure
+  of: { the: [ Person Organization Location ], shorthand: Values.String }
+PhoneNumber.RegionalFormats.NorthAmerica: &PhoneNumber.RegionalFormats.NorthAmerica
+  isa: measure
+  extends: &HasPhoneNumber
+  measures: { area_code: Values.String, local_number: Values.String }
+PostalAddress.Has: &HasPostalAddress
+  isa: measure
+  of: { the: [ Person Organization Location ], shorthand: Values.String }
+PostalAddress.RegionalFormats.UnitedStates: &PostalAddress.RegionalFormats.UnitedStates
+  isa: measure
+  extends: &PostalAddress.Has
+  of: 
+    the: [ Person Organization Location ]
+    address_line_1: Values.String
+    address_line_2: Values.String
+    city: Location.City
+    state: Location.State
+    country: Location.Country
+    postal_code: Location.PostalCode

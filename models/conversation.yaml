@@ -1,0 +1,37 @@
+Participant: &Participant
+  isa: subject
+Space: &Space
+  isa: subject
+Channel: &Channel
+  isa: subject
+Reaction: &Reaction
+  isa: subject
+Message: &Message
+  isa: subject
+HasAuthor: &HasAuthor
+  isa: scalar
+  of: { message: *Message, author: *Participant }
+Body.Has: &Body.Has
+  isa: scalar
+  of: { message: *Message, body: Media.Any }
+Tag: &Tag
+  isa: scalar
+Other.Mentions: &Other.Mentions
+  isa: set
+  of: { message: *Message, what: *Channel }
+Other.PostedTo: &Other.PostedTo
+  isa: scalar
+  of: { channel: Subject, prev: *Message, next: *Message }
+Other.ResponseTo: &Other.ResponseTo
+  isa: scalar
+  of: { original: *Message, prev: *Message, next: *Message }
+Reaction.Values: &Reaction.Values
+  isa: classification
+  values:
+    - Smiley
+    - Frown
+    - ThumbsUp
+    - ThumbsDown
+Reaction.Has: &Reaction.Has
+  isa: scalar
+  of: { message: *Message, who: *Channel, reaction: *Reaction.Values }

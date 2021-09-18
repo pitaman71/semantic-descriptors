@@ -1,0 +1,42 @@
+Place: &Place
+  isa: subject
+Coincides: &Coincides
+  isa: measure
+  of: 
+    a: Any
+    b: Any
+    a_subsumes_b: Values.Boolean
+    b_subsumes_a: Values.Boolean
+    a_surrounds_b: Values.Boolean
+    b_surrounds_a: Values.Boolean
+    overlaps: [ Values.Boolean, Values.Float ]
+Kind: &Kind
+  isa: classification
+  values:
+    - Physical
+    - Geographic
+    - Political
+    - Utility
+    - Federation
+    - Building
+    - Subdivision
+    - Development
+    - Condominium
+    - Neighborhood
+    - PostalCode
+    - Village
+    - Ward
+    - Precinct
+    - Town
+    - City
+    - County
+    - Parish
+    - Borough
+    - State
+    - Province
+    - Territory
+    - Country
+    - Nation
+    - Continent
+    - Treaty
+    - Region

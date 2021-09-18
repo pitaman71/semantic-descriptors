@@ -1,9 +1,5 @@
-Point: &Point
-  isa: subject
 Length: &Length
   isa: domain
-Coordinates.Has: &Coordinates.Has
-  of: { point: *Point, x: *Length, y: *Length }
 Directions.Values: &Directions.Values
   isa: classification
   values:
@@ -18,12 +14,18 @@ Directions.Values: &Directions.Values
 Angle: &Angle
   isa: domain
   of: { degrees: Values.Float }
-Distance.Has: &Distance.Has
-  isa: measure
+Point: &Point
+  isa: subject
+Point.ByCoordinates: &Point.ByCoordinates
+  of: { point: *Point, x: *Length, y: *Length }
+Segment: &Segment
+  isa: subject
+Segment.Has: &Segment.Has
+  isa: measur
   of: { a: *Point, b: *Point, value: *Length }
 Path: &Path
   isa: subject
-Path.Properties: &Path.Properties
+Path.AsProperties: &Path.AsProperties
   isa: measure
   of:
     path: *Path
@@ -34,7 +36,7 @@ Contains: &Contains
     - { container: Path, contained: Vector }
 Shape: &Shape
   isa: subject
-Shape.Properties: &Shape.Properties
+Shape.AsProperties: &Shape.AsProperties
   isa: measure
   of:
     the: *Shape
@@ -42,14 +44,16 @@ Shape.Properties: &Shape.Properties
 Vector: &Vector
   isa: subject
   extends: *Shape
-Vector.Properties: &Vector.Properties
+Vector.AsDirectionDistance: &Vector.AsDirectionDistance
   of:
-    - vector: *Vector
-    - direction: [ *Directions.Values, *Angle ]
-      distance: *Length
-    - vector: *Vector
-      dx: Values.Float
-      dy: Values.Float
+    vector: *Vector
+    direction: [ *Directions.Values, *Angle ]
+    distance: *Length
+Vector.AsDeltas: &Vector.AsDeltas
+  of:
+    vector: *Vector
+    dx: Values.Float
+    dy: Values.Float
 Vector.Points: &Vector.Points
   of:
     the: Ellipse
@@ -63,7 +67,7 @@ Vector.Points: &Vector.Points
 Ellipse: &Ellipse
   isa: subject
   extends: *Shape
-Ellipse.Properties: &Ellipse.Properties
+Ellipse.AsDiameterAspect: &Ellipse.AsDiameterAspect
   of:
     the: Ellipse
     diameter: Native.Float
@@ -81,10 +85,8 @@ Ellipse.Points: &Ellipse.Points
 Equilateral: &Equilateral
   isa: subject
   extends: *Shape
-Equilateral.Properties: &Equilateral.Properties
+Equilateral.AsLengthCount: &Equilateral.AsLengthCount
   of:
     the: Ellipse
-    diameter: Native.Float
-    aspect: Native.Float
-    begin: *Angle
-    end: *Angle
+    segmentCount: Native.Integer
+    segmentLength: Native.Float

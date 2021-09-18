@@ -4,7 +4,7 @@ Member: &Member
   isa: subject
 Locale: &Locale
   isa: subject
-Kind: &Kind
+Group.Kind: &Group.Kind
   isa: classifier
   values:
     - Organization

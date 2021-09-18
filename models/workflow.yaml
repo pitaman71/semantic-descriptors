@@ -2,12 +2,12 @@ Item: &Item
   isa: subject
 Participant: &Participant
   isa: subject
-RequestedBy: &RequestedBy
+Participant.RequestedBy: &Participant.RequestedBy
   isa: measure
   description:
     en_US: the item has been requested by an individual or group.
   of: { item: Subject, who: Subject }
-AssignedTo: &AssignedTo
+Participant.AssignedTo: &Participant.AssignedTo
   isa: measure
   description:
     en_US: the item has been assigned to a responsible individual or group.
@@ -17,13 +17,13 @@ Work: &Work
   description:
     en_US: Work was applied to the item but it is not complete yet. By whom and when?
   nouns: { item: Subject, who: Subject }
-ByWhom: &ByWhom
+Work.DoneByWhom: &Work.DoneByWhom
   isa: measure
   of: { work: *Work, whom: *Participant }
-When: &When
+Work.DoneWhen: &Work.DoneWhen
   isa: measure
   of: { work: *Work, when: Temporal.Period }
-CompletedBy: &CompletedBy
+Work.CompletedBy: &Work.CompletedBy
   isa: measure
   description:
     en_US: The item is completed, by whom and on what date?

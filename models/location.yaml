@@ -10,7 +10,7 @@ Coincides: &Coincides
     a_surrounds_b: Values.Boolean
     b_surrounds_a: Values.Boolean
     overlaps: [ Values.Boolean, Values.Float ]
-Kind: &Kind
+Location.Kind: &Location.Kind
   isa: classification
   values:
     - Physical
